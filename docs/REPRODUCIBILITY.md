@@ -1,22 +1,22 @@
-# Воспроизводимость
+# Reproducibility
 
-Репозиторий содержит один финальный runtime:
+The repository contains one final runtime:
 
 ```text
 runtime/bad_t012_fire_t050/run.py
 ```
 
-Корневой `run.py` должен быть побитово идентичен этому файлу.
+The root `run.py` must be byte-for-byte identical to this file.
 
-## Проверка артефактов
+## Artifact verification
 
-Из корня репозитория:
+From the repository root:
 
 ```bash
 python scripts/verify_repo.py
 ```
 
-Скрипт проверяет SHA256 следующих файлов:
+The script checks SHA256 hashes for:
 
 - `adapters/bad/adapter_model.safetensors`
 - `adapters/bad/adapter_config.json`
@@ -27,22 +27,21 @@ python scripts/verify_repo.py
 - `metadata.json`
 - `wheels/peft-0.20.0-py3-none-any.whl`
 
-Также проверяется, что корневой `run.py` побитово идентичен
-`runtime/bad_t012_fire_t050/run.py`.
+It also checks that the root `run.py` and `runtime/bad_t012_fire_t050/run.py` are byte-for-byte identical.
 
-При успешной проверке:
+Expected result:
 
 ```text
 RESULT: ALL OK
 ```
 
-## Сборка submission
+## Build the submission
 
 ```bash
 python scripts/build_submission.py --variant bad_t012_fire_t050
 ```
 
-В submission используются:
+Submission contents:
 
 ```text
 run.py
@@ -63,7 +62,7 @@ wheels/
 
 ## Competition runtime
 
-Ожидаемые shared models:
+Expected shared models:
 
 ```text
 /shared_models/Qwen/Qwen3.5-4B
@@ -76,19 +75,18 @@ Entry point:
 python -u run.py
 ```
 
-Финальные thresholds:
+Final thresholds:
 
 ```text
-БАД: 0.12
-Легковоспламеняющиеся: 0.50
+Dietary supplements (BAD): 0.12
+Flammable products (FIRE): 0.50
 ```
 
-## Финальная проверка перед отправкой
+## Final pre-submission check
 
 ```bash
 python scripts/verify_repo.py
 python scripts/build_submission.py --variant bad_t012_fire_t050
 ```
 
-После этого необходимо убедиться, что итоговый ZIP содержит `run.py`,
-`metadata.json`, оба LoRA adapter и локальный PEFT wheel.
+Then confirm that the final ZIP contains `run.py`, `metadata.json`, both LoRA adapters, and the local PEFT wheel.

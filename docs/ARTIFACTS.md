@@ -1,22 +1,22 @@
-# Артефакты
+# Artifacts
 
-В репозитории сохранены только артефакты финального решения.
+The repository retains only artifacts from the final solution.
 
 ## Runtime
 
-Основной competition entrypoint:
+Main competition entry point:
 
 ```text
 run.py
 ```
 
-Зафиксированная копия финального runtime:
+Frozen copy of the final runtime:
 
 ```text
 runtime/bad_t012_fire_t050/run.py
 ```
 
-Оба файла должны быть побитово идентичны.
+Both files must be byte-for-byte identical.
 
 SHA256:
 
@@ -24,11 +24,11 @@ SHA256:
 a0d89f62d57dedd2cb4e9eaf0eeea606c6b7c58e02336fb9f466d89e7a7b83a5
 ```
 
-Runtime использует thresholds:
+Runtime thresholds:
 
 ```text
-БАД: 0.12
-Легковоспламеняющиеся: 0.50
+Dietary supplements (BAD): 0.12
+Flammable products (FIRE): 0.50
 ```
 
 ## BAD adapter
@@ -43,7 +43,7 @@ SHA256:
 5a0da02c0bbca13fe0cb7257d85fb407422b705f56d6e449d59acbab1a49984d
 ```
 
-Конфигурация:
+Configuration:
 
 ```text
 adapters/bad/adapter_config.json
@@ -67,7 +67,7 @@ SHA256:
 6bd02b7950e312d69d3e657b1e7bf61d84c1c07a92ae1a7fdb84c0cb00e55d01
 ```
 
-Конфигурация:
+Configuration:
 
 ```text
 adapters/fire/adapter_config.json
@@ -93,7 +93,7 @@ SHA256:
 
 ## PEFT wheel
 
-Для воспроизводимого offline runtime используется локальный wheel:
+A local wheel provides a reproducible offline runtime:
 
 ```text
 wheels/peft-0.20.0-py3-none-any.whl
@@ -105,7 +105,7 @@ SHA256:
 0fbba16ffebfad3de96e06f2da6860fd860292324b85b6141909fa1e26ea9233
 ```
 
-## Shared models competition environment
+## Shared models in the competition environment
 
 Base model:
 
@@ -113,46 +113,45 @@ Base model:
 /shared_models/Qwen/Qwen3.5-4B
 ```
 
-OCR model, используемая непосредственно во время inference:
+OCR model used directly at inference:
 
 ```text
 /shared_models/PaddlePaddle/PaddleOCR-VL-1.5
 ```
 
-Эти shared models не хранятся в репозитории.
+These shared models are not stored in the repository.
 
 ## Training notebooks
 
-Код обучения финальных LoRA adapter находится в:
+Training code for the final LoRA adapters:
 
 ```text
 notebooks/train_bad_adapter.ipynb
 notebooks/train_fire_adapter.ipynb
 ```
 
-## Предрасчитанный OCR
+## Precomputed OCR
 
-OCR-кэш для training pipeline находится в:
+Training OCR cache:
 
 ```text
 data/ocr/ocr_all_images_high_quality.csv
 data/ocr/ocr_all_products_high_quality.csv
 ```
 
-`ocr_all_images_high_quality.csv` содержит OCR на уровне отдельных изображений.
+`ocr_all_images_high_quality.csv` contains per-image OCR.
 
-`ocr_all_products_high_quality.csv` содержит объединенный OCR на уровне товара и
-используется OCR-aware training pipeline.
+`ocr_all_products_high_quality.csv` contains OCR aggregated per product and is used by the OCR-aware training pipeline.
 
-## Проверка
+## Verification
 
-Все зафиксированные SHA256 можно проверить одной командой:
+Check all recorded SHA256 hashes with:
 
 ```bash
 python scripts/verify_repo.py
 ```
 
-Ожидаемый результат:
+Expected result:
 
 ```text
 RESULT: ALL OK
